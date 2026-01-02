@@ -1,352 +1,206 @@
-/* IMPORT FONTS: Josefin Sans (Netflix vibe) & Inter (Readability) */
+/* --- Čia paliekame viršutinę dalį (Fonts, Body, Header, Hero) tokią pačią kaip buvusi --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Josefin+Sans:wght@300;500;700&display=swap');
 
 :root {
     --bg-color: #050505;
     --primary-green: #174a3c;
-    --accent-glow: #2a856b;
+    --primary-green-hover: #236e59;
     --text-white: #ffffff;
     --text-gray: #b3b3b3;
     --font-heading: 'Josefin Sans', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --card-radius: 4px; /* Netflix kortelės aštresnės */
 }
 
-/* FILM GRAIN OVERLAY (Kino juostos efektas) */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ... (Palik visą buvusį body, header, nav stilių čia) ... */
+/* Jei reikia, nukopijuok iš praeito atsakymo viršaus, čia dedu tik naujoves */
 
 body {
     background-color: var(--bg-color);
     color: var(--text-white);
     font-family: var(--font-body);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
+    margin: 0; padding: 0;
 }
+/* Pakartoju pagrindinius, kad veiktų atskirai kopijuojant */
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; padding: 0; }
 
-a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-ul { list-style: none; }
-
-/* HEADER - Cinematic & Transparent */
-header {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-    padding: 20px 4%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; /* Fixed like Netflix */
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: background 0.4s ease;
-}
-
-header.scrolled {
-    background: #050505;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-}
-
-.logo-container img {
-    height: 50px;
-    width: auto;
-    filter: drop-shadow(0 0 8px rgba(23, 74, 60, 0.4));
-}
-
-nav ul { display: flex; gap: 35px; }
-
-nav ul li a {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #e5e5e5;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-nav ul li a:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
-/* HERO SECTION - Didelis ir įtraukiantis */
-.hero {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    position: relative;
-    /* Subtilus žalias gradientas fone */
-    background: radial-gradient(circle at center, rgba(23, 74, 60, 0.2) 0%, rgba(5, 5, 5, 1) 70%);
-}
-
-.hero h1 {
-    font-family: var(--font-heading);
-    font-size: 4.5rem; /* Labai didelis tekstas */
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -2px;
-    text-transform: uppercase;
-    background: linear-gradient(180deg, #fff 0%, #aaa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 30px rgba(23, 74, 60, 0.3));
-    animation: fadeIn 1.5s ease-out;
-}
-
-.hero p {
-    font-size: 1.3rem;
-    color: var(--text-gray);
-    max-width: 700px;
-    font-weight: 300;
-    animation: fadeIn 2s ease-out;
-}
-
-/* SECTIONS */
-.films-section {
-    padding: 60px 4%;
-    position: relative;
-    z-index: 1;
-}
-
-.section-title {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-left: 4px solid var(--primary-green);
-    padding-left: 15px;
-}
-
-/* FILMS GRID - Netflix Style Grid */
+/* --- NAUJAS KORTELIŲ DIZAINAS (HOVER EFFECT) --- */
 .films-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px; /* Mažesnis tarpas, kaip Netflix */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 0 4%;
 }
 
 .film-card {
     position: relative;
-    border-radius: var(--card-radius);
+    border-radius: 4px;
     overflow: hidden;
-    background: #111;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+    background: #000;
+    aspect-ratio: 16/9;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .film-card:hover {
-    transform: scale(1.05); /* Padidėja */
+    transform: scale(1.05);
     z-index: 10;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    border-color: var(--primary-green);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    outline: 2px solid var(--primary-green);
 }
 
-.thumbnail-container {
-    position: relative;
-    aspect-ratio: 16/9;
-}
-
-.thumbnail-container img {
+.film-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: filter 0.4s ease;
 }
 
-/* Užtamsinimas ant nuotraukos */
-.thumbnail-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
-    opacity: 0.8;
+/* Užtamsiname nuotrauką užvedus */
+.film-card:hover .film-thumbnail {
+    filter: brightness(0.4) blur(2px);
 }
 
-.film-info {
+/* Informacija, kuri išlenda */
+.film-details-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 20px;
-    z-index: 2;
-}
-
-.film-info h3 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    color: #fff;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,1);
-}
-
-.film-info p {
-    font-size: 0.8rem;
-    color: #ddd;
-    font-weight: 500;
-    display: inline-block;
-    background: var(--primary-green);
-    padding: 2px 8px;
-    border-radius: 2px;
-}
-
-/* Play button on hover */
-.play-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0,0,0,0.4);
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 80%, transparent 100%);
+    transform: translateY(40px); /* Paslėpta žemiau */
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s ease;
 }
 
-.film-card:hover .play-overlay {
+/* Pradinis pavadinimo vaizdas (visada matomas, bet apačioje) */
+.film-title-static {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    transition: opacity 0.3s;
+}
+
+.film-card:hover .film-title-static {
+    opacity: 0; /* Paslepiame statinį pavadinimą, nes jį parodysime overlay viduje */
+}
+
+.film-card:hover .film-details-overlay {
+    transform: translateY(0);
     opacity: 1;
 }
 
-.play-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(23, 74, 60, 0.6);
-    backdrop-filter: blur(4px);
+.overlay-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    display: block;
 }
 
-/* CONTENT PAGES */
-.content-container {
-    max-width: 1200px;
+.overlay-meta {
+    font-size: 0.75rem;
+    color: var(--primary-green);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.overlay-author {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.watch-btn-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    background: var(--text-white);
+    color: #000;
+    border-radius: 2px;
+    font-weight: 700;
+    font-family: var(--font-body);
+}
+
+.watch-btn-small:hover {
+    background: var(--primary-green);
+    color: #fff;
+}
+
+/* --- FAQ (D.U.K) STYLES --- */
+.faq-container {
+    max-width: 800px;
     margin: 100px auto 60px;
     padding: 0 20px;
 }
 
-.back-btn {
-    font-family: var(--font-heading);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #aaa;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-.back-btn:hover { color: var(--primary-green); }
-
-.video-wrapper {
-    box-shadow: 0 0 50px rgba(23, 74, 60, 0.15); /* Glow aplink video */
-    border: 1px solid #333;
-    background: #000;
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 40px;
-}
-
-.video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
-
-.details-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 50px;
-}
-
-.description h4, .credits h4 {
-    font-family: var(--font-heading);
-    color: var(--text-gray);
+.faq-item {
+    background: #111;
     margin-bottom: 15px;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    border: 1px solid #222;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-.description p {
-    font-size: 1.1rem;
-    color: #ccc;
-    line-height: 1.8;
-}
-
-.credits ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #222;
-    color: #888;
-    font-size: 0.95rem;
-}
-.credits strong { color: #fff; }
-
-/* FOOTER */
-footer {
-    border-top: 1px solid #222;
-    padding: 50px 4%;
-    text-align: center;
-    color: #666;
-    margin-top: auto;
-}
-
-.footer-links {
-    margin-bottom: 20px;
-}
-
-.footer-links a {
-    margin: 0 15px;
+.faq-question {
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--text-white);
     font-family: var(--font-heading);
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
-.footer-links a:hover { color: var(--primary-green); }
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    .hero { height: 70vh; }
-    .films-grid { grid-template-columns: 1fr; }
-    
-    .mobile-menu-btn { display: block; font-size: 1.5rem; color: #fff; }
-    nav ul {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100vh;
-        background: #000;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-    }
-    nav ul.active { display: flex; }
-    .details-grid { grid-template-columns: 1fr; }
+.faq-question:hover {
+    background: #1a1a1a;
+}
+
+.faq-question i {
+    transition: transform 0.3s;
+    color: var(--primary-green);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-question.active {
+    background: #161616;
+    color: var(--primary-green);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: #0a0a0a;
+    padding: 0 20px;
+}
+
+.faq-answer p {
+    padding: 20px 0;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
