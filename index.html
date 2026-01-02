@@ -1,4 +1,45 @@
-<main class="films-section">
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP – FILMS | Cinematic Portfolio</title>
+    <meta name="description" content="DP – FILMS – tai asmeninis Dominiko Šuškevič filmų kūrimo projektas. Cinematic video, gamta, istorijos ir vizualioji kūryba.">
+    <meta name="keywords" content="dominikphotofficial, DP, DP portfolio, Dominik Šuškevič, Cinematic video, DP FILMS, videografas, Cirkliškis, Šventa">
+    <link rel="canonical" href="https://films.Dominikphotofficial.lt/">
+    
+    <!-- Stilius -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Ikonos (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- MENIU JUOSTA (HEADER) -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://i.postimg.cc/bYk2WyV4/Logo-DP-films.png" alt="DP FILMS Logo">
+        </a>
+        <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active" style="color:#fff;">Filmai</a></li>
+                <li><a href="about.html">Apie mus</a></li>
+                <li><a href="faq.html">D.U.K</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGRINDINĖ DALIS (HERO) -->
+    <section class="hero">
+        <h1>DP – FILMS</h1>
+        <p>VIZIJA. ISTORIJA. KINEMATOGRAFIJA.</p>
+        <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">Dominik Šuškevič Portfolio</p>
+    </section>
+
+    <!-- FILMŲ SĄRAŠAS -->
+    <main class="films-section">
         <h2 class="section-title">Naujausi Darbai</h2>
         
         <div class="films-grid">
@@ -7,12 +48,12 @@
             <a href="films/winter-cirkliskis-2025.html" class="film-card">
                 <img src="https://i.postimg.cc/15JJq3HP/Winter-cirkliskis.png" alt="Winter Cirkliškis" class="film-thumbnail">
                 
-                <!-- Statinis pavadinimas (dingsta užvedus) -->
-                <div class="film-title-static">Winter | Cirkliškis</div>
+                <!-- Matoma kai neužvesta pelytė -->
+                <div class="film-title-static">WINTER | CIRKLIŠKIS</div>
 
-                <!-- Išlendanti informacija -->
+                <!-- Matoma UŽVEDUS pelytę (Hover) -->
                 <div class="film-details-overlay">
-                    <span class="overlay-title">Winter | Cirkliškis</span>
+                    <span class="overlay-title">WINTER | CIRKLIŠKIS</span>
                     <div class="overlay-meta">
                         <span>2025</span> • <span>Cinematic</span>
                     </div>
@@ -25,12 +66,12 @@
             <a href="films/winter-sventa-2025.html" class="film-card">
                 <img src="https://i.postimg.cc/DyBBXwgh/winter-sventa.png" alt="Winter Šventa" class="film-thumbnail">
                 
-                <div class="film-title-static">Winter | Šventa</div>
+                <div class="film-title-static">WINTER | ŠVENTA</div>
 
                 <div class="film-details-overlay">
-                    <span class="overlay-title">Winter | Šventa</span>
+                    <span class="overlay-title">WINTER | ŠVENTA</span>
                     <div class="overlay-meta">
-                        <span>2025</span> • <span>Nature</span>
+                        <span>2025</span> • <span>Nature / Park</span>
                     </div>
                     <span class="overlay-author">Autorius: Dominik Šuškevič</span>
                     <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
@@ -39,14 +80,14 @@
 
             <!-- 3. Winter Kauno Marios -->
             <a href="films/winter-kauno-marios-2025.html" class="film-card">
-                <img src="https://i.postimg.cc/65YYvp0X/winter-forest-kauno_-marios.png" alt="Kauno Marios" class="film-thumbnail">
+                <img src="https://i.postimg.cc/65YYvp0X/winter-forest-kauno_-marios.png" alt="Winter Kauno Marios" class="film-thumbnail">
                 
-                <div class="film-title-static">Winter | Kauno Marios</div>
+                <div class="film-title-static">WINTER | KAUNO MARIOS</div>
 
                 <div class="film-details-overlay">
-                    <span class="overlay-title">Winter | Kauno Marios</span>
+                    <span class="overlay-title">WINTER | KAUNO MARIOS</span>
                     <div class="overlay-meta">
-                        <span>2025</span> • <span>Forest</span>
+                        <span>2025</span> • <span>Forest Cinematic</span>
                     </div>
                     <span class="overlay-author">Autorius: Dominik Šuškevič</span>
                     <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
@@ -55,6 +96,7 @@
 
             <!-- 4. Exit 2024 -->
             <a href="films/exit-2024.html" class="film-card">
+                <!-- Grayscale filtras, kad atrodytų senesnis/kitoks -->
                 <img src="https://i.postimg.cc/y8ktMLYc/exit.jpg" style="filter: grayscale(80%);" alt="Exit 2024" class="film-thumbnail">
                 
                 <div class="film-title-static">EXIT | ВЫХОД 2024</div>
@@ -87,3 +129,20 @@
 
         </div>
     </main>
+
+    <!-- APAČIA (FOOTER) -->
+    <footer>
+        <div class="footer-links">
+            <a href="about.html">Apie mus</a>
+            <a href="privacy.html">Privatumo politika</a>
+            <a href="faq.html">D.U.K</a>
+        </div>
+        <div class="copyright">
+            &copy; <span id="current-year"></span> DP – FILMS | Dominikphotofficial. Visos teisės saugomos.
+        </div>
+    </footer>
+
+    <!-- JavaScript pajungimas -->
+    <script src="script.js"></script>
+</body>
+</html>
