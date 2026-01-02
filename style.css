@@ -1,15 +1,28 @@
-/* IMPORT GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@500;700;900&display=swap');
+/* IMPORT FONTS: Josefin Sans (Netflix vibe) & Inter (Readability) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Josefin+Sans:wght@300;500;700&display=swap');
 
 :root {
-    --bg-dark: #020202;
-    --bg-light: #0a0a0a;
+    --bg-color: #050505;
     --primary-green: #174a3c;
-    --secondary-green: #236e59; /* Šviesesnė žalia gradientui */
+    --accent-glow: #2a856b;
     --text-white: #ffffff;
-    --text-gray: #b0b0b0;
-    --glass-bg: rgba(10, 10, 10, 0.85);
-    --card-hover: rgba(23, 74, 60, 0.15);
+    --text-gray: #b3b3b3;
+    --font-heading: 'Josefin Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --card-radius: 4px; /* Netflix kortelės aštresnės */
+}
+
+/* FILM GRAIN OVERLAY (Kino juostos efektas) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
 }
 
 * {
@@ -19,382 +32,321 @@
 }
 
 body {
-    background: radial-gradient(circle at top center, #111e1b 0%, var(--bg-dark) 60%);
+    background-color: var(--bg-color);
     color: var(--text-white);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.7;
-    min-height: 100vh;
+    font-family: var(--font-body);
+    line-height: 1.6;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-}
+a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+ul { list-style: none; }
 
-/* HEADER - GLASSMORPHISM */
+/* HEADER - Cinematic & Transparent */
 header {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 15px 5%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    padding: 20px 4%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed; /* Fixed like Netflix */
+    width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.4s ease;
+}
+
+header.scrolled {
+    background: #050505;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .logo-container img {
-    height: 55px; /* Optimalus dydis */
+    height: 50px;
     width: auto;
-    filter: drop-shadow(0 0 10px rgba(23, 74, 60, 0.5)); /* Lengvas švytėjimas logo */
-    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(23, 74, 60, 0.4));
 }
 
-.logo-container img:hover {
-    transform: scale(1.05);
-}
-
-nav ul {
-    display: flex;
-    gap: 40px;
-}
+nav ul { display: flex; gap: 35px; }
 
 nav ul li a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #e5e5e5;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    color: var(--text-gray);
-    position: relative;
+    letter-spacing: 1px;
 }
 
-nav ul li a:hover, nav ul li a.active {
-    color: white;
+nav ul li a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
-    transition: width 0.3s ease;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
-}
-
-.mobile-menu-btn {
-    display: none;
-    font-size: 1.5rem;
-    color: var(--text-white);
-    cursor: pointer;
-}
-
-/* HERO SECTION */
+/* HERO SECTION - Didelis ir įtraukiantis */
 .hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 120px 20px 80px;
-    max-width: 900px;
-    margin: 0 auto;
-    animation: fadeUp 1s ease-out;
+    padding: 0 20px;
+    position: relative;
+    /* Subtilus žalias gradientas fone */
+    background: radial-gradient(circle at center, rgba(23, 74, 60, 0.2) 0%, rgba(5, 5, 5, 1) 70%);
 }
 
 .hero h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 900;
+    font-family: var(--font-heading);
+    font-size: 4.5rem; /* Labai didelis tekstas */
+    font-weight: 700;
+    line-height: 1.1;
     margin-bottom: 20px;
+    letter-spacing: -2px;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    /* Gradient Text */
-    background: linear-gradient(135deg, #ffffff 30%, var(--secondary-green) 100%);
+    background: linear-gradient(180deg, #fff 0%, #aaa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    filter: drop-shadow(0 0 30px rgba(23, 74, 60, 0.3));
+    animation: fadeIn 1.5s ease-out;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--text-gray);
+    max-width: 700px;
     font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto;
+    animation: fadeIn 2s ease-out;
 }
 
-/* SECTION TITLES */
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    position: relative;
-    display: inline-block;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--primary-green);
-    margin: 15px auto 0;
-    border-radius: 2px;
-}
-
-/* FILMS GRID */
+/* SECTIONS */
 .films-section {
-    padding: 20px 5% 80px;
-    flex: 1;
+    padding: 60px 4%;
+    position: relative;
+    z-index: 1;
 }
 
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-left: 4px solid var(--primary-green);
+    padding-left: 15px;
+}
+
+/* FILMS GRID - Netflix Style Grid */
 .films-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px; /* Mažesnis tarpas, kaip Netflix */
 }
 
 .film-card {
-    background-color: #080808;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background: #111;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .film-card:hover {
-    transform: translateY(-10px);
+    transform: scale(1.05); /* Padidėja */
+    z-index: 10;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     border-color: var(--primary-green);
-    box-shadow: 0 20px 40px rgba(23, 74, 60, 0.2);
 }
 
 .thumbnail-container {
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
     position: relative;
+    aspect-ratio: 16/9;
 }
 
 .thumbnail-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
-    opacity: 0.9;
 }
 
+/* Užtamsinimas ant nuotraukos */
 .thumbnail-container::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    opacity: 0.6;
-}
-
-.film-card:hover .thumbnail-container img {
-    transform: scale(1.08);
-    opacity: 1;
-}
-
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    width: 60px;
-    height: 60px;
-    background: rgba(23, 74, 60, 0.8);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: white;
-    opacity: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px var(--primary-green);
-    z-index: 2;
-}
-
-.film-card:hover .play-icon {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+    opacity: 0.8;
 }
 
 .film-info {
-    padding: 25px;
-    background: linear-gradient(to bottom, #080808, #050505);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 2;
 }
 
 .film-info h3 {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,1);
 }
 
 .film-info p {
-    font-size: 0.85rem;
-    color: var(--primary-green);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
+    font-size: 0.8rem;
+    color: #ddd;
+    font-weight: 500;
+    display: inline-block;
+    background: var(--primary-green);
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+/* Play button on hover */
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.film-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(23, 74, 60, 0.6);
+    backdrop-filter: blur(4px);
 }
 
 /* CONTENT PAGES */
 .content-container {
-    max-width: 1000px;
-    margin: 60px auto;
-    padding: 0 25px;
-    animation: fadeUp 0.8s ease;
+    max-width: 1200px;
+    margin: 100px auto 60px;
+    padding: 0 20px;
 }
 
 .back-btn {
+    font-family: var(--font-heading);
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-    color: var(--text-gray);
-    font-weight: 500;
+    gap: 8px;
+    color: #aaa;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
     font-size: 0.9rem;
-    padding: 10px 20px;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50px;
-    transition: all 0.3s;
 }
-
-.back-btn:hover {
-    background: var(--primary-green);
-    color: white;
-    border-color: var(--primary-green);
-}
+.back-btn:hover { color: var(--primary-green); }
 
 .video-wrapper {
+    box-shadow: 0 0 50px rgba(23, 74, 60, 0.15); /* Glow aplink video */
+    border: 1px solid #333;
+    background: #000;
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     margin-bottom: 40px;
-    background: #000;
-    border-radius: 4px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+.video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
 
 .details-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 60px;
-    margin-top: 40px;
+    gap: 50px;
 }
 
 .description h4, .credits h4 {
-    color: var(--primary-green);
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 20px;
+    font-family: var(--font-heading);
+    color: var(--text-gray);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 10px;
+}
+
+.description p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.8;
 }
 
 .credits ul li {
-    margin-bottom: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+    color: #888;
     font-size: 0.95rem;
-    color: var(--text-gray);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding-bottom: 8px;
 }
-
-.credits strong {
-    color: white;
-    font-weight: 600;
-}
+.credits strong { color: #fff; }
 
 /* FOOTER */
 footer {
-    background-color: #030303;
-    padding: 60px 5% 30px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid #222;
+    padding: 50px 4%;
+    text-align: center;
+    color: #666;
     margin-top: auto;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 30px;
+.footer-links {
+    margin-bottom: 20px;
 }
 
 .footer-links a {
-    font-size: 0.9rem;
-    color: var(--text-gray);
+    margin: 0 15px;
+    font-family: var(--font-heading);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 0.9rem;
 }
-
-.footer-links a:hover {
-    color: var(--primary-green);
-}
-
-.copyright {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #444;
-}
+.footer-links a:hover { color: var(--primary-green); }
 
 /* ANIMATIONS */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.2rem; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero { height: 70vh; }
+    .films-grid { grid-template-columns: 1fr; }
     
+    .mobile-menu-btn { display: block; font-size: 1.5rem; color: #fff; }
     nav ul {
         display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100vh;
+        background: #000;
         flex-direction: column;
-        position: absolute;
-        top: 85px;
-        left: 0;
-        width: 100%;
-        background: rgba(5, 5, 5, 0.98);
-        padding: 30px;
-        text-align: center;
-        border-bottom: 1px solid var(--primary-green);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
     }
-    
     nav ul.active { display: flex; }
-    
-    .mobile-menu-btn { display: block; }
-    
-    .details-grid { grid-template-columns: 1fr; gap: 30px; }
+    .details-grid { grid-template-columns: 1fr; }
 }
