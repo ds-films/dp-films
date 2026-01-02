@@ -1,55 +1,233 @@
-/* --- Čia paliekame viršutinę dalį (Fonts, Body, Header, Hero) tokią pačią kaip buvusi --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Josefin+Sans:wght@300;500;700&display=swap');
+/* =========================================
+   1. IMPORTS & VARIABLES
+   ========================================= */
+/* Importuojame 'Josefin Sans' (Antraštėms, Netflix vibe) ir 'Inter' (Tekstui) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Josefin+Sans:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-color: #050505;
-    --primary-green: #174a3c;
+    /* Spalvų paletė */
+    --bg-color: #050505;          /* Labai tamsi, beveik juoda */
+    --card-bg: #0a0a0a;
+    --primary-green: #174a3c;     /* Tavo pagrindinė žalia */
     --primary-green-hover: #236e59;
     --text-white: #ffffff;
     --text-gray: #b3b3b3;
+    
+    /* Šriftai */
     --font-heading: 'Josefin Sans', sans-serif;
     --font-body: 'Inter', sans-serif;
+    
+    /* Kiti nustatymai */
+    --card-radius: 4px;
+    --transition-speed: 0.3s;
 }
 
-/* ... (Palik visą buvusį body, header, nav stilių čia) ... */
-/* Jei reikia, nukopijuok iš praeito atsakymo viršaus, čia dedu tik naujoves */
+/* =========================================
+   2. GLOBAL STYLES & FILM GRAIN
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     background-color: var(--bg-color);
     color: var(--text-white);
     font-family: var(--font-body);
-    margin: 0; padding: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Paslepia horizontalų slinkimą */
 }
-/* Pakartoju pagrindinius, kad veiktų atskirai kopijuojant */
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; padding: 0; }
 
-/* --- NAUJAS KORTELIŲ DIZAINAS (HOVER EFFECT) --- */
+/* FILM GRAIN OVERLAY (Kino efektas fone) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* SVG filtras triukšmui sukurti */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; /* Leidžia spausti per viršų */
+    z-index: 9999;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-speed) ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
+header {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Klasė pridedama per JS slenkant žemyn */
+header.scrolled {
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px); /* Stiklo efektas */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.logo-container img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(23, 74, 60, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.logo-container img:hover {
+    transform: scale(1.05);
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: #fff;
+}
+
+/* Žalia linija po nuoroda užvedus */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--primary-green);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero {
+    height: 90vh; /* Beveik visas ekranas */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: radial-gradient(circle at center, rgba(23, 74, 60, 0.25) 0%, var(--bg-color) 70%);
+    position: relative;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(23, 74, 60, 0.6);
+    animation: fadeUp 1s ease-out;
+}
+
+.hero p {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeUp 1.5s ease-out;
+}
+
+/* =========================================
+   5. FILMS GRID & CARDS (NETFLIX STYLE)
+   ========================================= */
+.films-section {
+    padding: 40px 5% 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 5px solid var(--primary-green);
+    padding-left: 15px;
+}
+
 .films-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 25px;
-    padding: 0 4%;
+    gap: 20px;
 }
 
+/* Kortelės pagrindas */
 .film-card {
     position: relative;
-    border-radius: 4px;
+    border-radius: var(--card-radius);
     overflow: hidden;
     background: #000;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/9; /* Standartinis video formatas */
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .film-card:hover {
-    transform: scale(1.05);
-    z-index: 10;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-    outline: 2px solid var(--primary-green);
+    transform: scale(1.05); /* Padidėja */
+    z-index: 20;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+    border-color: var(--primary-green);
 }
 
+/* Nuotrauka */
 .film-thumbnail {
     width: 100%;
     height: 100%;
@@ -57,82 +235,91 @@ ul { list-style: none; padding: 0; }
     transition: filter 0.4s ease;
 }
 
-/* Užtamsiname nuotrauką užvedus */
 .film-card:hover .film-thumbnail {
-    filter: brightness(0.4) blur(2px);
+    filter: brightness(0.3) blur(1px); /* Pritemsta ir susilieja užvedus */
 }
 
-/* Informacija, kuri išlenda */
+/* Statinis pavadinimas (Matomas kai pelytė neužvesta) */
+.film-title-static {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+    transition: opacity 0.3s ease;
+    text-transform: uppercase;
+    z-index: 5;
+}
+
+.film-card:hover .film-title-static {
+    opacity: 0; /* Dingsta, kad netrukdytų overlay */
+}
+
+/* Išlendanti informacija (Overlay) */
 .film-details-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 80%, transparent 100%);
-    transform: translateY(40px); /* Paslėpta žemiau */
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
     opacity: 0;
+    transform: translateY(20px);
     transition: all 0.4s ease;
 }
 
-/* Pradinis pavadinimo vaizdas (visada matomas, bet apačioje) */
-.film-title-static {
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    transition: opacity 0.3s;
-}
-
-.film-card:hover .film-title-static {
-    opacity: 0; /* Paslepiame statinį pavadinimą, nes jį parodysime overlay viduje */
-}
-
 .film-card:hover .film-details-overlay {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
 }
 
 .overlay-title {
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     text-transform: uppercase;
-    display: block;
 }
 
 .overlay-meta {
     font-size: 0.75rem;
     color: var(--primary-green);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     gap: 10px;
 }
 
 .overlay-author {
-    font-size: 0.85rem;
-    color: #ccc;
+    font-size: 0.8rem;
+    color: #aaa;
     margin-bottom: 15px;
-    display: block;
 }
 
+/* Mygtukas "Žiūrėti" */
 .watch-btn-small {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    font-size: 0.8rem;
-    padding: 6px 12px;
-    background: var(--text-white);
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    background: #fff;
     color: #000;
     border-radius: 2px;
     font-weight: 700;
     font-family: var(--font-body);
+    width: fit-content;
+    transition: background 0.3s;
 }
 
 .watch-btn-small:hover {
@@ -140,15 +327,91 @@ ul { list-style: none; padding: 0; }
     color: #fff;
 }
 
-/* --- FAQ (D.U.K) STYLES --- */
-.faq-container {
-    max-width: 800px;
+/* =========================================
+   6. INNER PAGES (VIDEO, ABOUT)
+   ========================================= */
+.content-container {
+    max-width: 1000px;
     margin: 100px auto 60px;
     padding: 0 20px;
+    animation: fadeUp 0.6s ease;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    color: var(--text-gray);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+.back-btn:hover { color: var(--primary-green); }
+
+/* Video Wrapper (16:9) */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 40px;
+    background: #000;
+    border: 1px solid #333;
+    box-shadow: 0 0 40px rgba(23, 74, 60, 0.1);
+}
+
+.video-wrapper iframe, .video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+}
+
+.description h4, .credits h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-green);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.description p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.credits ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #999;
+    font-size: 0.9rem;
+}
+.credits strong { color: #fff; margin-right: 5px;}
+
+/* =========================================
+   7. FAQ (D.U.K) STYLES
+   ========================================= */
+.faq-container {
+    max-width: 800px;
+    margin: 110px auto 60px; /* Daugiau vietos viršuje dėl fixed header */
+    padding: 0 20px;
+    animation: fadeUp 0.6s ease;
 }
 
 .faq-item {
-    background: #111;
+    background: #0f0f0f;
     margin-bottom: 15px;
     border: 1px solid #222;
     border-radius: 4px;
@@ -164,43 +427,124 @@ ul { list-style: none; padding: 0; }
     color: var(--text-white);
     font-family: var(--font-heading);
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 .faq-question:hover {
     background: #1a1a1a;
 }
 
-.faq-question i {
-    transition: transform 0.3s;
+.faq-question.active {
+    background: #161616;
     color: var(--primary-green);
+    border-bottom: 1px solid #222;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
 }
 
 .faq-question.active i {
     transform: rotate(180deg);
 }
 
-.faq-question.active {
-    background: #161616;
-    color: var(--primary-green);
-}
-
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.4s ease-out;
     background: #0a0a0a;
-    padding: 0 20px;
 }
 
 .faq-answer p {
-    padding: 20px 0;
+    padding: 20px;
     color: var(--text-gray);
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+/* =========================================
+   8. FOOTER
+   ========================================= */
+footer {
+    background-color: #020202;
+    padding: 50px 5%;
+    border-top: 1px solid #1a1a1a;
+    margin-top: auto;
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 25px;
+}
+
+.footer-links a {
+    margin: 0 15px;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.footer-links a:hover {
+    color: var(--primary-green);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: #444;
+}
+
+/* =========================================
+   9. ANIMATIONS & RESPONSIVE
+   ========================================= */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    
+    /* Mobilusis meniu */
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        justify-content: center;
+        align-items: center;
+        z-index: 998;
+        padding: 40px;
+    }
+    
+    nav ul.active { display: flex; }
+    
+    nav ul li a { font-size: 1.5rem; }
+    
+    .mobile-menu-btn { 
+        display: block; 
+        z-index: 999; /* Virš meniu */
+    }
+    
+    .films-grid {
+        grid-template-columns: 1fr; /* Viena kolona */
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .film-card {
+        pointer-events: auto; /* Mobiliesiems */
+    }
 }
