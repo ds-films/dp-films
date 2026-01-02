@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- === SEO NUSTATYMAI === -->
+    <title>Winter | Šventa - DP FILMS</title>
+    <meta name="description" content="Cinematic video: Šventa – gatvinis kaimas, Sirvėtos regioninis parkas, dvaras ir gamtos paminklai. Filmuota žiemą. Autorius: Dominik Šuškevič.">
+    <meta name="keywords" content="dominikphotofficial, DP, Šventa, Sirvėtos Regioninis parkas, Švenčionys, Cinematic video, žiema, dvaras, gamta">
+    <meta name="author" content="Dominik Šuškevič">
+    
+    <!-- === SOCIAL MEDIA PREVIEW (Open Graph) === -->
+    <!-- Tai padarys gražią nuorodą siunčiant per Messenger/FB -->
+    <meta property="og:title" content="Winter | Šventa - Cinematic Video">
+    <meta property="og:description" content="Žiemos vaizdai iš Šventos kaimo ir Sirvėtos regioninio parko. Žiūrėti DP – FILMS.">
+    <meta property="og:image" content="https://i.postimg.cc/DyBBXwgh/winter-sventa.png">
+    <meta property="og:url" content="https://films.Dominikphotofficial.lt/films/winter-sventa-2025.html">
+    <meta property="og:type" content="video.movie">
+
+    <!-- Stilius -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="../index.html" class="logo-container">
+            <img src="https://i.postimg.cc/bYk2WyV4/Logo-DP-films.png" alt="DP FILMS Logo">
+        </a>
+        <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Filmai</a></li>
+                <li><a href="../about.html">Apie mus</a></li>
+                <li><a href="../faq.html">D.U.K</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-container">
+        
+        <!-- Back Button -->
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Visi filmai
+        </a>
+        
+        <h1 class="section-title" style="text-align: left; margin: 0 0 30px 0; border-left: none; padding-left: 0;">Winter | Šventa</h1>
+
+        <!-- VIDEO PLAYER -->
+        <div class="video-wrapper">
+            <!-- SVARBU: Pakeisk 'VIDEO_ID_HERE' į savo tikrą YouTube video kodą -->
+            <!-- Pvz., jei nuoroda https://www.youtube.com/watch?v=dQw4w9WgXcQ, tai ID yra dQw4w9WgXcQ -->
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/VIDEO_ID_HERE?rel=0&modestbranding=1" 
+                title="Winter Šventa Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- DETAILS GRID -->
+        <div class="details-grid">
+            
+            <!-- Description -->
+            <div class="description">
+                <h4>Apie Vietovę</h4>
+                <p>Šventa – gatvinis kaimas Švenčionių rajono savivaldybėje, 7 km į šiaurę nuo Švenčionių. Tai seniūnaitijos centras ir Sirvėtos regioninio parko direkcijos būstinė.</p>
+                <br>
+                <p>Vietovė pasižymi turtingu paveldu: čia yra biblioteka, Šventos pilkapis bei išlikęs Šventos dvaras. Gamtos mylėtojus žavi 26 liepų pavėsinė ir saugomas gamtos paminklas – Šventos ąžuolas.</p>
+            </div>
+
+            <!-- Credits -->
+            <div class="credits">
+                <h4>Kūrybinė Grupė</h4>
+                <ul>
+                    <li><strong>Prodiuseriai:</strong> DP FILMS, Dominikphotofficial</li>
+                    <li><strong>Scenarijus:</strong> Dominik Šuškevič</li>
+                    <li><strong>Kamera / Montažas:</strong> Dominik Šuškevič</li>
+                    <li><strong>Metai:</strong> 2025</li>
+                    <li><strong>Lokacija:</strong> Sirvėtos Regioninis parkas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="../about.html">Apie mus</a>
+            <a href="../privacy.html">Privatumo politika</a>
+            <a href="../faq.html">D.U.K</a>
+        </div>
+        <div class="copyright">
+            &copy; <span id="current-year"></span> DP – FILMS.
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
