@@ -1,34 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu
+    // Mobile Menu & Header Logic (Jau turi šitą, palik)
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navList = document.querySelector('nav ul');
-
     if(menuBtn) {
         menuBtn.addEventListener('click', () => {
             navList.classList.toggle('active');
-            // Keičia ikoną iš hamburger į X (pasirinktinai)
-            const icon = menuBtn.querySelector('i');
-            if (navList.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
         });
     }
 
-    // Dynamic Header Background (Netflix effect)
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+    // FAQ Accordion Logic (NAUJA DALIS)
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            // Uždaro kitus atidarytus (jei nori, kad tik vienas būtų atviras)
+            const currentlyActive = document.querySelector('.faq-question.active');
+            if(currentlyActive && currentlyActive !== question) {
+                currentlyActive.classList.remove('active');
+                currentlyActive.nextElementSibling.style.maxHeight = null;
+            }
+
+            // Atidaro/Uždaro paspaustą
+            question.classList.toggle('active');
+            const answer = question.nextElementSibling;
+            
+            if (question.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
     });
 
-    // Year
+    // Copyright Metai
     const yearSpan = document.getElementById('current-year');
     if(yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
