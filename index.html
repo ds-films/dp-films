@@ -3,146 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DP – FILMS | Cinematic Portfolio</title>
-    <meta name="description" content="DP – FILMS – tai asmeninis Dominiko Šuškevič filmų kūrimo projektas. Cinematic video, gamta, istorijos ir vizualioji kūryba.">
-    <meta name="keywords" content="dominikphotofficial, DP, DP portfolio, Dominik Šuškevič, Cinematic video, DP FILMS, videografas, Cirkliškis, Šventa">
-    <link rel="canonical" href="https://films.Dominikphotofficial.lt/">
+    <title>DP.PORTFOLIO</title>
+    <meta name="description" content="DP.PORTFOLIO – Minimalizmas, erdvė, šviesa. Profesionalus fotografas ir short film kūrėjas.">
+    <meta name="keywords" content="fotografas, portfolio, Lietuva, Vilnius, gamta, short film">
+    <link rel="canonical" href="https://portfolio.dominikphotofficial.lt/">
     
-    <!-- Stilius -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio.dominikphotofficial.lt/">
+    <meta property="og:title" content="DP.PORTFOLIO | Minimalistinė Fotografija">
+    <meta property="og:description" content="Pamatykite pasaulį per mano objektyvą.">
+    <meta property="og:image" content="https://i.postimg.cc/SNJR5jwY/IMG-5630.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Ikonos (Font Awesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://iili.io/fjNLbs4.png">
 </head>
 <body>
+    <div id="preloader"><div class="loader"></div></div>
 
-    <!-- MENIU JUOSTA (HEADER) -->
     <header>
-        <a href="index.html" class="logo-container">
-            <img src="https://i.postimg.cc/bYk2WyV4/Logo-DP-films.png" alt="DP FILMS Logo">
-        </a>
-        <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active" style="color:#fff;">Filmai</a></li>
-                <li><a href="about.html">Apie mus</a></li>
-                <li><a href="faq.html">D.U.K</a></li>
-            </ul>
-        </nav>
+        <div class="logo"><a href="index.html"><img src="https://iili.io/fjNLbs4.png" alt="DP Logo"></a></div>
+        <div class="burger"><div></div><div></div><div></div></div>
     </header>
 
-    <!-- PAGRINDINĖ DALIS (HERO) -->
+    <div class="nav-menu">
+        <a href="index.html">Darbai</a>
+        <a href="about.html">Apie</a>
+        <a href="contacts.html">Kontaktai</a>
+    </div>
+
     <section class="hero">
-        <h1>DP – FILMS</h1>
-        <p>VIZIJA. ISTORIJA. KINEMATOGRAFIJA.</p>
-        <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">Dominik Šuškevič Portfolio</p>
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://i.postimg.cc/SNJR5jwY/IMG-5630.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('https://i.postimg.cc/Dy2Q1ryc/Flower-01.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('https://i.postimg.cc/vTpSGtSm/BMWE36-01.jpg');"></div>
+        </div>
+        <div class="hero-content">
+            <h1>DP.PORTFOLIO</h1>
+            <p>Erdvė. Šviesa. Emocija.</p>
+        </div>
     </section>
 
-    <!-- FILMŲ SĄRAŠAS -->
-    <main class="films-section">
-        <h2 class="section-title">Naujausi Darbai</h2>
-        
-        <div class="films-grid">
-            
-            <!-- 1. Winter Cirkliškis -->
-            <a href="films/winter-cirkliskis-2025.html" class="film-card">
-                <img src="https://i.postimg.cc/15JJq3HP/Winter-cirkliskis.png" alt="Winter Cirkliškis" class="film-thumbnail">
-                
-                <!-- Matoma kai neužvesta pelytė -->
-                <div class="film-title-static">WINTER | CIRKLIŠKIS</div>
-
-                <!-- Matoma UŽVEDUS pelytę (Hover) -->
-                <div class="film-details-overlay">
-                    <span class="overlay-title">WINTER | CIRKLIŠKIS</span>
-                    <div class="overlay-meta">
-                        <span>2025</span> • <span>Cinematic</span>
-                    </div>
-                    <span class="overlay-author">Autorius: Dominik Šuškevič</span>
-                    <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
-                </div>
-            </a>
-
-            <!-- 2. Winter Šventa -->
-            <a href="films/winter-sventa-2025.html" class="film-card">
-                <img src="https://i.postimg.cc/DyBBXwgh/winter-sventa.png" alt="Winter Šventa" class="film-thumbnail">
-                
-                <div class="film-title-static">WINTER | ŠVENTA</div>
-
-                <div class="film-details-overlay">
-                    <span class="overlay-title">WINTER | ŠVENTA</span>
-                    <div class="overlay-meta">
-                        <span>2025</span> • <span>Nature / Park</span>
-                    </div>
-                    <span class="overlay-author">Autorius: Dominik Šuškevič</span>
-                    <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
-                </div>
-            </a>
-
-            <!-- 3. Winter Kauno Marios -->
-            <a href="films/winter-kauno-marios-2025.html" class="film-card">
-                <img src="https://i.postimg.cc/65YYvp0X/winter-forest-kauno_-marios.png" alt="Winter Kauno Marios" class="film-thumbnail">
-                
-                <div class="film-title-static">WINTER | KAUNO MARIOS</div>
-
-                <div class="film-details-overlay">
-                    <span class="overlay-title">WINTER | KAUNO MARIOS</span>
-                    <div class="overlay-meta">
-                        <span>2025</span> • <span>Forest Cinematic</span>
-                    </div>
-                    <span class="overlay-author">Autorius: Dominik Šuškevič</span>
-                    <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
-                </div>
-            </a>
-
-            <!-- 4. Exit 2024 -->
-            <a href="films/exit-2024.html" class="film-card">
-                <!-- Grayscale filtras, kad atrodytų senesnis/kitoks -->
-                <img src="https://i.postimg.cc/y8ktMLYc/exit.jpg" style="filter: grayscale(80%);" alt="Exit 2024" class="film-thumbnail">
-                
-                <div class="film-title-static">EXIT | ВЫХОД 2024</div>
-
-                <div class="film-details-overlay">
-                    <span class="overlay-title">EXIT | ВЫХОД 2024</span>
-                    <div class="overlay-meta">
-                        <span>2024</span> • <span>Short Film</span>
-                    </div>
-                    <span class="overlay-author">Autorius: Dominik Šuškevič</span>
-                    <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
-                </div>
-            </a>
-
-             <!-- 5. Exit 2025 -->
-             <a href="films/exit-2025.html" class="film-card">
-                <img src="https://i.postimg.cc/y8ktMLYc/exit.jpg" alt="Exit 2025" class="film-thumbnail">
-                
-                <div class="film-title-static">EXIT | ВЫХОД 2025</div>
-
-                <div class="film-details-overlay">
-                    <span class="overlay-title">EXIT | ВЫХОД 2025</span>
-                    <div class="overlay-meta">
-                        <span>2025</span> • <span>Short Film</span>
-                    </div>
-                    <span class="overlay-author">Autorius: Dominik Šuškevič</span>
-                    <div class="watch-btn-small"><i class="fas fa-play"></i> Žiūrėti</div>
-                </div>
-            </a>
-
+    <section class="container">
+        <h2 class="section-title">Albumai</h2>
+        <div class="album-grid">
+            <a href="albums/rundale.html" class="album-card"><img src="https://i.postimg.cc/SNJR5jwY/IMG-5630.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Rundāle Palace</span></div></a>
+            <a href="albums/noka.html" class="album-card"><img src="https://i.postimg.cc/28SthTZg/noka-car-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">NOKA Gathering</span></div></a>
+            <a href="albums/geles.html" class="album-card"><img src="https://i.postimg.cc/Dy2Q1ryc/Flower-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Gėlės</span></div></a>
+            <a href="albums/baltoji-kiele.html" class="album-card"><img src="https://i.postimg.cc/KYbYwNkK/bird-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Baltoji kielė</span></div></a>
+            <a href="albums/bmw-e36.html" class="album-card"><img src="https://i.postimg.cc/vTpSGtSm/BMWE36-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">BMW E36</span></div></a>
+            <a href="albums/cirkliskis.html" class="album-card"><img src="https://i.postimg.cc/x8pRF86C/cirkliskis-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Cirkliškis</span></div></a>
+            <a href="albums/sirvetos-parkas.html" class="album-card"><img src="https://i.postimg.cc/X7gd6GTN/srp-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Sirvėtos parkas</span></div></a>
+            <a href="albums/sventa.html" class="album-card"><img src="https://i.postimg.cc/QM6Nbm4p/venta-0.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Šventa</span></div></a>
+            <a href="albums/vdu-sodas.html" class="album-card"><img src="https://i.postimg.cc/HL0Fv0Xk/vdu-botanikos-sodas-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">VDU Sodas</span></div></a>
+            <a href="albums/moletu-observatorija.html" class="album-card"><img src="https://i.postimg.cc/3x3PgfJH/Teleskopas-165-cm.png" loading="lazy"><div class="album-overlay"><span class="album-title">Observatorija</span></div></a>
+            <a href="albums/gandras.html" class="album-card"><img src="https://i.postimg.cc/KYtMgjLT/Gandras-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Gandras</span></div></a>
+            <a href="albums/petrausku-namai.html" class="album-card"><img src="https://i.postimg.cc/8k0XLvTx/miko-ir-kipro-petrausku-namai-01.jpg" loading="lazy"><div class="album-overlay"><span class="album-title">Petrauskų Namai</span></div></a>
+            <a href="albums/valdovu-rumai.html" class="album-card"><img src="https://i.postimg.cc/C5XjhNy7/Vilniaus-muziejus.png" loading="lazy"><div class="album-overlay"><span class="album-title">Valdovų Rūmai</span></div></a>
         </div>
-    </main>
+    </section>
 
-    <!-- APAČIA (FOOTER) -->
-    <footer>
-        <div class="footer-links">
-            <a href="about.html">Apie mus</a>
-            <a href="privacy.html">Privatumo politika</a>
-            <a href="faq.html">D.U.K</a>
-        </div>
-        <div class="copyright">
-            &copy; <span id="current-year"></span> DP – FILMS | Dominikphotofficial. Visos teisės saugomos.
-        </div>
-    </footer>
-
-    <!-- JavaScript pajungimas -->
     <script src="script.js"></script>
 </body>
 </html>
